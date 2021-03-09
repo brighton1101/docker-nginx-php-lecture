@@ -1,4 +1,4 @@
-## ITP 405: Deeper Dive into Docker Demo
+# ITP 405: Deeper Dive into Docker Demo
 
 
 ## Intro:
@@ -21,7 +21,7 @@
 - Heroku cli
 
 
-## Background on nginx/reverse proxies/cgi servers - other stuff you will see
+## Background on nginx/reverse proxies/cgi servers
 
 ### What is a proxy server and a reverse proxy:
 - Proxy server: Intermediarry server that forwards requests from content from multiple clients to different servers (broad)
@@ -42,7 +42,7 @@
 - Look at the comment block that starts with `CGI stuff`. This is where requests get proxied to our php-fpm cgi server
 
 
-### Dockerfile pseduo-code
+## Dockerfile pseduo-code
 1. Install php-fpm in container
 1. Install nginx in container
 1. Copy over our app code 
