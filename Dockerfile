@@ -17,7 +17,8 @@ FROM php:8.0.3-fpm-buster
 # familiar with Linux - just know that this is
 # downloading nginx for us.
 RUN apt-get update && \
-    apt-get install -y nginx
+    apt-get install -y nginx && \
+    apt-get install -y gettext
 
 
 # Create a place for the src code to live within
@@ -38,11 +39,13 @@ RUN chmod -R ug+rwx ${APP_LOCATION}
 # Copy over the nginx.conf file to confiugre
 # nginx. It is important that our document
 # root in nginx.conf matches ${APP_LOCATION}/public
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf.template /etc/nginx/nginx.conf.template
 
 
 # The default commands to run when the
 # container starts. Nginx will run as a
 # background process and php-fpm will run
 # forever.
-CMD nginx && php-fpm
+CMD  /bin/bash -c "export PORT=${PORT:=80} && envsubst '\$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf" && \
+    nginx && \
+    php-fpm
