@@ -34,6 +34,13 @@ COPY . ${APP_LOCATION}
 
 # Run composer install to pull deps
 # Generate an app key
+# Note that in a real production environment,
+# generating a new app key has consequences:
+#   - All encrypted cookies will be invalidated meaning...
+#   - User sessions will be invalidated (amongst other things)
+# If there are multiple instances of a laravel app
+# running and accessible by users at the same time the
+# keys would need to match
 WORKDIR ${APP_LOCATION}
 RUN composer install
 RUN php artisan key:generate
