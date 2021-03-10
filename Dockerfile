@@ -21,11 +21,22 @@ RUN apt-get update && \
     apt-get install -y gettext
 
 
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+
 # Create a place for the src code to live within
 # the container
 ENV APP_LOCATION=/home/laravel
 RUN mkdir -p ${APP_LOCATION}
 COPY . ${APP_LOCATION}
+
+
+# Run composer install to pull deps
+# Generate an app key
+WORKDIR ${APP_LOCATION}
+RUN composer install
+RUN php artisan key:generate
 
 
 # Filesystem permissions... I wouldn't worry
