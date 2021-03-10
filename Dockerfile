@@ -46,6 +46,6 @@ COPY nginx.conf.template /etc/nginx/nginx.conf.template
 # container starts. Nginx will run as a
 # background process and php-fpm will run
 # forever.
-CMD  /bin/bash -c "export PORT=${PORT:=80} && envsubst '\$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf" && \
+CMD  /bin/bash -c "envsubst '\$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf" && \
     nginx && \
     php-fpm

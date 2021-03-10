@@ -42,10 +42,18 @@
 - Look at the comment block that starts with `CGI stuff`. This is where requests get proxied to our php-fpm cgi server
 
 
-## Dockerfile pseduo-code
+## Docker stuff
+
+### Dockerfile pseduo-code
 1. Install php-fpm in container
 1. Install nginx in container
 1. Copy over our app code 
 1. Copy over configuration files required
 1. Set the default command to first start nginx and then php-fpm
+
+### Build locally
+`docker build -t itp-405-demo .`
+
+### Run locally
+`docker run -it -p 8080:80 -e PORT=80 itp-405-demo`
 
