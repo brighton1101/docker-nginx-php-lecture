@@ -5,7 +5,7 @@ events {
 http {
 
     server {
-        listen          80;
+        listen          ${PORT};
 
         # Here is where to put the path to your app's source code's
         # public directory for laravel
